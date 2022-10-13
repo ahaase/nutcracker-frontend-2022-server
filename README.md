@@ -7,17 +7,17 @@
 - `npm ci`
 - `npm run db:start`
 
-# TEAR DOWN
+## TEAR DOWN
 
 - `npm run db:stop`
 
-# START SERVER
+## START SERVER
 
 Option 1: `npm start`
 
 Option 2: `npm run forever:start` // To keep the server running
 
-# OTHER COMMANDS
+## OTHER COMMANDS
 
 `npm run forever:list` // List forever processes
 
