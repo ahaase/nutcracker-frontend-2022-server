@@ -5,9 +5,14 @@
 - Install docker
 - Install node.js
 - `npm ci`
+- `cp secret_key.default.js secret_key.js`
+- Enter secret key hash into `secret_key.js`
+- `cp pg_settings.default.js pg_settings.js`
+- Enter postgres password into `pg_settings.js`
+- export POSTGRES_PASSWORD=examplepassword123 **(has to be same password as in pg_settings)**
 - `npm run db:start`
 
-### TEAR DOWN
+### TEARDOWN
 
 - `npm run db:stop`
 
@@ -21,7 +26,7 @@ Option 2: `npm run forever:start` // To keep the server running
 
 `npm run forever:list` // List forever processes
 
-`npm run forever:stop` // Stop forever process with ID 0. WARNING! This is not necessarily the correct forever process
+`npm run forever:stop` // Stop forever process with ID 0. **WARNING!** This is not necessarily the correct forever process
 
 # API DOCS
 
@@ -70,3 +75,15 @@ Payload options:
 ```
 ## DELETE ITEM
 DELETE `/api/item/<ID>`
+
+
+## CREATE NEW SESSION
+
+POST `/api/session/new
+
+Payload options:
+```
+{
+  count: Integer
+}
+```
