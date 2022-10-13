@@ -36,6 +36,14 @@ Each API key gets some sample data upon first usage.
 ## LIST ITEMS
 GET `/api/item`
 
+Query options:
+```
+offset: Integer,
+limit: Integer (1-128)
+```
+
+Example: GET ```/api/item?offset=96&limit=32```
+
 ## RETRIEVE ITEM
 GET `/api/item/<ID>`
 
