@@ -1,4 +1,4 @@
-{
+export default {
   "user": "vello",
   "host": "localhost",
   "database": "vellodb",

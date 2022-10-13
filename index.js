@@ -3,7 +3,7 @@ import * as pg from 'pg';
 import { Item } from './item.js';
 import { log } from './log.js';
 import { Session } from './session.js';
-import * as pgSettings from './pg_settings.json';
+import * as pgSettings from './pg_settings.js';
 
 const { Pool } = pg.default;
 const app = express();
