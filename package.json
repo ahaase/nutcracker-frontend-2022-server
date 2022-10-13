@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "forever index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "forever:start": "forever start index.js",
+    "forever:stop": "forever stop 0",
+    "forever:list": "forever list"
   },
   "author": "",
   "license": "ISC",
