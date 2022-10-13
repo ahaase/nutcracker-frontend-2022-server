@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Starting Postgres"
-docker run --name postgresqlVello -e POSTGRES_PASSWORD=$PG_PASSWORD --memory="128m" -p 5432:5432 -d postgres
+docker run --name postgresqlVello -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD --memory="128m" -p 5432:5432 -d postgres
 echo "Sleeping 1 second"
 sleep 1
 echo "Copying setup file"
