@@ -79,7 +79,7 @@ DELETE `/api/item/<ID>`
 
 ## CREATE NEW SESSION
 
-POST `/api/session/new
+POST `/api/session/new`
 
 Payload options:
 ```
