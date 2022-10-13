@@ -86,6 +86,6 @@ POST `/api/session/new`
 Payload options:
 ```
 {
-  count: Integer
+  count: Integer // Default: 1
 }
 ```
