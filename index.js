@@ -2,7 +2,7 @@ import express from 'express';
 import * as pg from 'pg';
 import { Item } from './item.js';
 import { log } from './log.js';
-import { Session } from './session.js';
+import { createSession, Session } from './session.js';
 import * as pgSettings from './pg_settings.js';
 import rateLimit from 'express-rate-limit'
 
@@ -44,6 +44,8 @@ app.use((req, res, next) => {
       await log(client, 'info', `${apiKey} END - ${req.method} ${req.url}`);
       release();
     });
+
+    if (req.url === '/api/session/new') return next();
 
     try {
       await (new Session(client, apiKey).getSession());
@@ -118,6 +120,15 @@ app.delete('/api/item/:id', (req, res) => {
   req.itemHandler.deleteItem(id).then((item) => {
     res.sendSuccess(item);
   }).catch((err) => {
+    res.sendError(500, err.message);
+  });
+});
+
+app.post('/api/session/new', (req, res) => {
+  createSession(res.client, req.headers['api-key'], req.body.count).then((newSessions) => {
+    res.sendSuccess(newSessions)
+  }).catch((err) => {
+    console.log(err);
     res.sendError(500, err.message);
   });
 });
