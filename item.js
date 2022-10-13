@@ -10,12 +10,25 @@ export class Item {
     this.apiKey = apiKey;
   }
 
-  listItems() {
+  listItems(offset, limit) {
+    offset = parseInt(offset);
+    limit = parseInt(limit);
+
+    if (!limit || limit < 0) limit = 64;
+    if (limit > 128) limit = 128;
+    if (!offset || offset < 0) offset = 0;
+
     return new Promise((resolve, reject) => {
-      this.client.query('SELECT uuid, description, done, do_before FROM item WHERE api_key = $1', [ this.apiKey ], (err, result) => {
+      this.client.query('SELECT uuid, description, done, do_before FROM item WHERE api_key = $1 OFFSET $2 FETCH NEXT $3 ROWS ONLY', [ this.apiKey, offset, limit ], (err, result) => {
         if (err) return reject(err);
 
-        resolve(result.rows);
+        resolve({
+          count: result.rowCount,
+          offset,
+          next_offset: offset + result.rowCount,
+          has_more: offset + result.rowCount >= offset + limit,
+          data: result.rows
+        });
       });
     });
   }

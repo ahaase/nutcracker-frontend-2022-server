@@ -54,7 +54,7 @@ app.use(express.json());
 
 // Index
 app.get('/api/item', (req, res) => {
-  req.itemHandler.listItems().then((items) => {
+  req.itemHandler.listItems(req.query.offset, req.query.limit).then((items) => {
     res.send(items);
   }).catch((err) => {
     res.sendError(500, err.message);
