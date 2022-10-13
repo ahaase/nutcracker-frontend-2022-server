@@ -4,10 +4,20 @@ import { Item } from './item.js';
 import { log } from './log.js';
 import { Session } from './session.js';
 import * as pgSettings from './pg_settings.js';
+import rateLimit from 'express-rate-limit'
 
 const { Pool } = pg.default;
 const app = express();
 const port = 3000;
+
+const limiter = rateLimit({
+	windowMs: 10 * 1000,
+	max: 10,
+	standardHeaders: true,
+	legacyHeaders: false,
+});
+
+app.use(limiter);
 
 app.use((req, res, next) => {
   res.sendError = sendError;
