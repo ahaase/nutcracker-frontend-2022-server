@@ -12,7 +12,7 @@ export class Item {
 
   listItems() {
     return new Promise((resolve, reject) => {
-      this.client.query('SELECT uuid, description, done, done_by FROM item WHERE api_key = $1', [ this.apiKey ], (err, result) => {
+      this.client.query('SELECT uuid, description, done, do_before FROM item WHERE api_key = $1', [ this.apiKey ], (err, result) => {
         if (err) return reject(err);
 
         resolve(result.rows);
@@ -21,7 +21,7 @@ export class Item {
   }
 
   createItem(values) {
-    const possibleValues = ['description', 'done_by'];
+    const possibleValues = ['description', 'do_before'];
     let validatedValues = {};
 
     return new Promise((resolve, reject) => {
@@ -44,7 +44,7 @@ export class Item {
         Object.keys(validatedValues).join(',')
       }) VALUES (${
         valuesString.join(',')
-      }) RETURNING uuid, description, done, done_by`, Object.values(validatedValues), (err, result) => {
+      }) RETURNING uuid, description, done, do_before`, Object.values(validatedValues), (err, result) => {
         if (err) return reject(err);
 
         resolve(result.rows[0]);
@@ -56,7 +56,7 @@ export class Item {
     return new Promise((resolve, reject) => {
       if (!id) return reject(new Error('ID must be specified'));
 
-      this.client.query('SELECT uuid, description, done, done_by FROM item WHERE uuid = $1 AND api_key = $2', [ id, this.apiKey ], (err, result) => {
+      this.client.query('SELECT uuid, description, done, do_before FROM item WHERE uuid = $1 AND api_key = $2', [ id, this.apiKey ], (err, result) => {
         if (err) return reject(err);
         if (!result.rows.length) return reject(new Error('Item not found'));
 
@@ -66,7 +66,7 @@ export class Item {
   }
 
   updateItem(id, values) {
-    const possibleValues = ['description', 'done', 'done_by'];
+    const possibleValues = ['description', 'done', 'do_before'];
     let validatedValues = {};
 
     return new Promise((resolve, reject) => {
@@ -86,7 +86,7 @@ export class Item {
         i++;
       }
 
-      this.client.query(`UPDATE item SET ${parts.join(',')} WHERE uuid = $1 AND api_key = $2 RETURNING uuid, description, done, done_by`, [ id, this.apiKey, ...Object.values(validatedValues) ], (err, result) => {
+      this.client.query(`UPDATE item SET ${parts.join(',')} WHERE uuid = $1 AND api_key = $2 RETURNING uuid, description, done, do_before`, [ id, this.apiKey, ...Object.values(validatedValues) ], (err, result) => {
         if (err) return reject(err);
         if (!result.rows.length) return reject(new Error('Item not found'));
 
@@ -132,11 +132,11 @@ export class Item {
       }
     }
 
-    if (possibleValues.includes('done_by') && Object.prototype.hasOwnProperty.call(values, 'done_by')) {
-      values.done_by = parseInt(values.done_by);
+    if (possibleValues.includes('do_before') && Object.prototype.hasOwnProperty.call(values, 'do_before')) {
+      values.do_before = parseInt(values.do_before);
 
-      if ((!values.done_by && values.done_by !== 0) || values.done_by < 0) {
-        throw new Error('done_by must be a positive integer');
+      if ((!values.do_before && values.do_before !== 0) || values.do_before < 0) {
+        throw new Error('do_before must be a positive integer');
       } 
     }
 

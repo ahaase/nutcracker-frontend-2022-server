@@ -20,7 +20,7 @@ CREATE TABLE item (
     api_key VARCHAR(100) NOT NULL,
     description TEXT DEFAULT '',
     done BOOLEAN DEFAULT false,
-    done_by INTEGER
+    do_before INTEGER
 );
 
 ALTER TABLE item OWNER TO vello;
