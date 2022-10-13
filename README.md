@@ -39,7 +39,7 @@ GET `/api/item`
 Query options:
 ```
 offset: Integer,
-limit: Integer (1-128)
+limit: Integer // 1-128
 ```
 
 Example: GET ```/api/item?offset=96&limit=32```
@@ -50,17 +50,17 @@ GET `/api/item/<ID>`
 ## CREATE ITEM
 POST `/api/item`
 
-Payload (All values are optional):
+Payload options:
 ```
 {
-  description: String, // Optional
+  description: String,
   do_before: Integer
 }
 ```
 ## UPDATE ITEM
 PUT `/api/item/<ID>`
 
-Payload (All values are optional):
+Payload options:
 ```
 {
   description: String,
