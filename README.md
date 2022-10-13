@@ -79,6 +79,8 @@ DELETE `/api/item/<ID>`
 
 ## CREATE NEW SESSION
 
+***Requires a special api-key set. Its hash should match the value in file*** `src/secret_key.js`
+
 POST `/api/session/new`
 
 Payload options:
