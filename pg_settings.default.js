@@ -4,5 +4,5 @@ export default {
   "database": "vellodb",
   "password": "", 
   "max": 100,
-  "port": 5432
-}
+  "port": 5432,
+};
