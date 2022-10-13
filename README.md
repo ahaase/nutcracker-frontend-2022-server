@@ -42,7 +42,7 @@ GET `/api/item/<ID>`
 ## CREATE ITEM
 POST `/api/item`
 
-Payload (All values :
+Payload (All values are optional):
 ```
 {
   description: String, // Optional
@@ -52,7 +52,7 @@ Payload (All values :
 ## UPDATE ITEM
 PUT `/api/item/<ID>`
 
-Payload:
+Payload (All values are optional):
 ```
 {
   description: String,
