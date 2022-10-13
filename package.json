@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "forever:start": "forever start index.js",
     "forever:stop": "forever stop 0",
-    "forever:list": "forever list"
+    "forever:list": "forever list",
+    "db:start": "cd setup && sh start.sh",
+    "db:stop": "cd setup && sh stop.sh"
   },
   "author": "",
   "license": "ISC",
