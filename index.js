@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   if (typeof apiKey !== 'string') return res.sendError(400, 'API key must be a string');
   if (apiKey.length < 8) return res.sendError(400, 'API key must be at least 8 characters in length');
 
-  new Pool(pgSettings).connect(async (err, client, release) => {
+  new Pool(pgSettings.default).connect(async (err, client, release) => {
     if (err) return res.sendError(500, 'Failed to connect to databse');
     res.client = client;
 
