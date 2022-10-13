@@ -21,7 +21,7 @@ export class Item {
   }
 
   createItem(values) {
-    const possibleValues = ['description', 'do_before'];
+    const possibleValues = ['description', 'do_before', 'done'];
     let validatedValues = {};
 
     return new Promise((resolve, reject) => {
