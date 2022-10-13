@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Visit antartica",
+    "do_before": 38
+  },
+  {
+    "description": "Live in New York City",
+    "do_before": 25
+  },
+  {
+    "description": "Write a novel",
+    "do_before": 50
+  },
+  {
+    "description": "Go on a USA road trip",
+    "do_before": 25
+  },
+  {
+    "description": "Become fluent in spanish",
+    "do_before": 60
+  },
+  {
+    "description": "Make pasta in italy",
+    "do_before": 32
+  },
+  {
+    "description": "Visit all 7 continents",
+    "do_before": 50
+  },
+  {
+    "description": "Hike Machu Picchu",
+    "do_before": 30
+  },
+  {
+    "description": "Go on a safari",
+    "do_before": 50
+  }
+]
