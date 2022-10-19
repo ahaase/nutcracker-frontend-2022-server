@@ -1,27 +1,32 @@
 # nutcracker-frontend-2022-server
 
-### SETUP
+### Setup
 
 - Install docker
 - Install node.js
 - `npm ci`
+- `cp secret_key.default.js secret_key.js`
+- Enter secret key hash into `secret_key.js`
+- `cp pg_settings.default.js pg_settings.js`
+- Enter postgres password into `pg_settings.js`
+- export POSTGRES_PASSWORD=examplepassword123 **(has to be same password as in pg_settings)**
 - `npm run db:start`
 
-### TEAR DOWN
+### Teardown
 
 - `npm run db:stop`
 
-### START SERVER
+### Start server
 
 Option 1: `npm start`
 
 Option 2: `npm run forever:start` // To keep the server running
 
-### OTHER COMMANDS
+### Other commands
 
 `npm run forever:list` // List forever processes
 
-`npm run forever:stop` // Stop forever process with ID 0. WARNING! This is not necessarily the correct forever process
+`npm run forever:stop` // Stop forever process with ID 0. **WARNING!** This is not necessarily the correct forever process
 
 # API DOCS
 
@@ -33,7 +38,9 @@ To use any endpoint you need to include an API key in your headers:
 
 Each API key gets some sample data upon first usage.
 
-## LIST ITEMS
+## Item
+
+### List items
 GET `/api/item`
 
 Query options:
@@ -44,10 +51,14 @@ limit: Integer // 1-128
 
 Example: GET ```/api/item?offset=96&limit=32```
 
-## RETRIEVE ITEM
+---
+
+### Retrieve item
 GET `/api/item/<ID>`
 
-## CREATE ITEM
+---
+
+### Create item
 POST `/api/item`
 
 Payload options:
@@ -57,7 +68,10 @@ Payload options:
   do_before: Integer
 }
 ```
-## UPDATE ITEM
+
+---
+
+### Update item
 PUT `/api/item/<ID>`
 
 Payload options:
@@ -68,5 +82,27 @@ Payload options:
   done: Boolean
 }
 ```
-## DELETE ITEM
+
+---
+
+### Delete item
 DELETE `/api/item/<ID>`
+
+---
+
+## Session
+
+### Create a new session
+
+***Requires a special api-key set. Its hash should match the value in file*** `src/secret_key.js`
+
+POST `/api/session/new`
+
+Payload options:
+```
+{
+  count: Integer // Default: 1
+}
+```
+
+---
