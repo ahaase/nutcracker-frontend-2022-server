@@ -5,6 +5,7 @@ import { log } from './log.js';
 import { createSession, Session } from './session.js';
 import * as pgSettings from './pg_settings.js';
 import rateLimit from 'express-rate-limit'
+import cors from 'cors';
 
 const { Pool } = pg.default;
 const app = express();
@@ -18,6 +19,7 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+app.use(cors())
 
 app.use((req, res, next) => {
   res.sendError = sendError;
